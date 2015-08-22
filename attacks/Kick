@@ -1,0 +1,10 @@
+--@Class Kick
+--@Extends BaseAttack
+
+function Kick:new()
+	local n = super:new()
+	n.damage = 2
+	n.name = "Kick"
+	n.type = "Normal"
+	return n
+end

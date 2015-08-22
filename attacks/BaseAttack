@@ -1,0 +1,22 @@
+--@Class BaseAttack
+--@Extends BaseClass
+
+function BaseAttack:new()
+	local n = new()
+	n.type = ""
+	n.name = ""
+	n.damage = 0
+	return n
+end
+
+function BaseAttack:getName()
+	return self.name
+end
+
+function BaseAttack:getDamage()
+	return self.damage
+end
+
+function BaseAttack:getType()
+	return self.type
+end

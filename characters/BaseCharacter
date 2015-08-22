@@ -1,0 +1,33 @@
+--@Class BaseCharacter
+--@Extends BaseClass
+
+function BaseCharacter:new()
+	local n = new()
+	n.name = ""
+	n.life = 0
+	n.maxLife = 0
+	n.attacks = {}
+	return n
+end
+
+function BaseCharacter:getName()
+	return self.name
+end
+
+function BaseCharacter:getLife()
+	return self.life
+end
+
+function BaseCharacter:getMaxLife()
+	return self.maxLife
+end
+
+function BaseCharacter:doDamage(dmg)
+	self.life = self.life-dmg
+	if(self.life<0) then self.life = 0 end
+	if(self.life>self.maxLife) then self.life = self.maxLife end
+end
+
+function BaseCharacter:getAttacks()
+	return self.attacks
+end

@@ -1,0 +1,11 @@
+--@Class Bob
+--@Extends BaseCharacter
+
+function Bob:new()
+	local n = super:new()
+	n.name = "Bob"
+	n.life = 10
+	n.maxLife = 10
+	n.attacks = {Kick:new()}
+	return n
+end
