@@ -2,10 +2,10 @@
 --@Extends BaseCharacter
 
 function Steve:new()
-	local n = super:new()
+	local n = new()
 	n.name = "Steve"
 	n.life = 20
 	n.maxLife = 20
-	n.attacks = {Kick:new()}
+	n.attacks = {Kick:new(),Punch:new(),Heal:new()}
 	return n
 end

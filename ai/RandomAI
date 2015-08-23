@@ -1,0 +1,10 @@
+--@Class RandomAI
+--@Extends BaseAI
+
+function RandomAI:new()
+	return new()
+end
+
+function RandomAI:selectAttack(attacks)
+	return attacks[math.random(1,#attacks)]
+end

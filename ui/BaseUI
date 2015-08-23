@@ -1,0 +1,22 @@
+--@Class BaseUI
+--@Extends BaseClass
+
+function BaseUI:new()
+	return new()
+end
+
+function BaseUI:mainMenu()
+
+end
+
+function BaseUI:playerSelectMenu(characters)
+	
+end
+
+function BaseUI:gameMenu(you,enemy)
+
+end
+
+function BaseUI:settingsMenu()
+
+end

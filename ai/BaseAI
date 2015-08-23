@@ -1,0 +1,11 @@
+--@Class BaseAI
+--@Extends BaseClass
+
+function BaseAI:new()
+	local n = new()
+	return n
+end
+
+function BaseAI:selectAttack(attacks,i,enemy)
+	return nil
+end

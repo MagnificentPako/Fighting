@@ -21,11 +21,40 @@ end
 
 recursive(rel("characters"))
 recursive(rel("attacks"))
+recursive(rel("ai"))
+recursive(rel("ui"))
 
 local chars = searchClassesExtending("BaseCharacter")
 
 local player = chars[math.random(1,#chars)]:new()
 local enemy = chars[math.random(1,#chars)]:new()
 
-print("You are playing as "..player:getName())
-print("Your enemy is playing as "..enemy:getName())
+local config = {}
+local cHandle = fs.open(rel("conf.cfg"),"r")
+config = textutils.unserialize(cHandle.readAll())
+cHandle.close()
+
+local ai = _G[config.ai]
+local ui = _G[config.ui]
+
+while true do
+
+	local attack = ui:gameMenu(player,enemy)
+	local enemyAttack = ai:selectAttack(enemy:getAttacks()) 
+
+	if(attack:getType() == "other") then
+		enemy:doDamage(attack:getDamage())
+	else
+		player:doDamage(attack:getDamage())
+	end
+
+	if(enemyAttack:getType() == "other") then
+		player:doDamage(enemyAttack:getDamage())
+	else
+		enemy:doDamage(enemyAttack:getDamage())
+	end
+
+	if(player:getLife() == 0 or enemy:getLife() == 0) then
+		break
+	end
+end

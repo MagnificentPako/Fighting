@@ -1,0 +1,56 @@
+--@Class RandomUI
+--Extends BaseUI
+
+--A very basic UI. it does not contain a main menu (automatically skips to the game) and doesn't allow you to select a character (randomly selected).
+
+function RandomUI:new()
+	return new()
+end
+
+function RandomUI:mainMenu()
+	return "play"
+end
+
+function RandomUI:playerSelectMenu(chars)
+	return chars[math.random(1,#chars)],chars[math.random(1,#chars)]
+end
+
+function RandomUI:gameMenu(player,enemy)
+	local function stats()
+		term.clear()
+		term.setCursorPos(1,1)
+		term.write("Enemy ["..enemy:getName().."] "..enemy:getLife().."/"..enemy:getMaxLife())
+		term.setCursorPos(1,2)
+		term.write("Player ["..player:getName().."] "..player:getLife().."/"..player:getMaxLife())
+	end
+
+	local sel = 1
+
+	local function redraw()
+		term.setCursorPos(1,19-#player:getAttacks())
+		for k,v in pairs(player:getAttacks()) do
+			if(k==sel) then write(">") end
+			print("["..v:getName().."]")
+		end
+	end
+
+	redraw()
+
+	while true do
+		stats()
+		redraw()
+		local evt = {os.pullEvent()}
+		if(evt[1]=="key") then
+			if(evt[2] == keys.up) then
+				sel = sel-1
+				if(sel<1) then sel = #player:getAttacks() end
+			elseif(evt[2] == keys.down) then
+				sel = sel+1
+				if(sel>#player:getAttacks()) then sel = 1 end
+			elseif(evt[2] == keys.enter) then
+				break
+			end
+		end
+	end
+	return player:getAttacks()[sel]
+end

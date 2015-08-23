@@ -1,10 +1,10 @@
---@Class Kick
+--@Class Punch
 --@Extends BaseAttack
 
-function Kick:new()
+function Punch:new()
 	local n = new()
-	n.damage = 2
-	n.name = "Kick"
+	n.damage = 1
+	n.name = "Punch"
 	n.type = "other"
 	return n
 end
